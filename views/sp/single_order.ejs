@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/customer/regw3.css">
+  <link rel="stylesheet" href="/sp/sp_home.css">
+  <style>
+    label{
+     color:blue;text-align:center;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <ul>
+        <li><a  href="/sp/">Home</a></li>
+        <li><a  class = "active" href="/sp/emp" name="employee">Employee</a></li>
+        <li><a href="/sp/booking" name="employee">Bookings</a></li>    
+        <li><a  href="/sp/edit" name="employee">EDIT PROFILE</a></li>    
+    </ul>
+    <ul>
+      <li><a href="/logout">Logout</a></li>
+  </ul>
+</div>
+<div style="margin-left:15%;padding:1px 16px;height:1000px;">
+    <main id="site-main"></main>
+  <h2>Booking Details</h2>
+  <div class="outer">
+
+    <div class="container">
+      <form action="/sp/confirm" method="POST">
+
+      <label for="" > Name</label><br>
+      <p>
+        <%= order.name %>
+      </p>
+      <label for=""> Address</label> <br>
+      <p>
+        <%= order.address %>
+      </p>
+      <label for=""> P  hone</label> <br>
+      <p>
+        <%= order.phone %>
+      </p>
+      <label for=""> City</label> <br>
+      <p>
+        <%= order.dist %>
+      </p>
+      <label for=""> category</label> <br>
+      <p>
+        <%= order.category %>
+      </p>
+      <label for=""> Status</label> <br>
+      <p>
+        <%= order.status %>
+      </p>
+      <label for="">Requirment</label>
+      <p>
+        <%=order.description%>
+      </p>
+        <input type="hidden" value="<%=order._id%>" name= "order_id">
+        <label for=""> Possible Dates</label> <br>
+        <select name="date" required>
+          <% for(i=0; i < order.date.length; i++ ) { %>
+            <option class="worker" value="<%=order.date[i]%>">
+              <%= order.date[i] %>
+            </option>
+            <% }%>
+        </select>
+        <br>
+        <label for=""> Worker</label> <br>
+        <select name="worker" required>
+          <% for(i=0; i < emp.length; i++ ) { %>
+            <option class="worker" value="<%=emp[i]._id%>">
+              <%= emp[i].name %>
+            </option>
+            <% }%>
+        </select>
+        <button type="submit"> Submit</button>
+      </form>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>

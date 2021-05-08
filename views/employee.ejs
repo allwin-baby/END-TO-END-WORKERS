@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body>
+    <div class="nav">
+        <h3>Registered Users</h3>
+        <ul>
+            <li><a  href="">Home</a></li>
+            <li><a class="active" href="" name="service">Service Provider</a></li>
+            <li><a href="" name="employee">Employee</a></li>
+            <li><a href="" name="cutomer">Customers</a></li>
+        </ul>
+        <h3>Add</h3>
+        <ul>
+            <li><a class="active" href="#home">District</a></li>
+            <li><a href="#news">Category</a></li>
+        </ul>
+    </div>
+    <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+        <main id="site-main">
+            <!-- form handling -->
+            <form>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>username</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>mobile</th>
+                            <th>place</th>
+                            <th>service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     
+                            <% for(var i=0; i < sp.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= sp[i].email %>
+                                    </td>
+                                    <td>
+                                        <%= sp[i].category %>
+                                    </td>
+                                    <td>
+                                        <%= sp[i].status %>
+                                    </td>
+                                    <td>
+                                        <a href="/edit-sp?id=<%= items[i]._id%>" class="btn border-shadow update">
+                                            <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                        </a>
+                                        <a class="btn border-shadow delete">
+                                            <!-- check assets/index.js -->
+                                            <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+              
+                    </tbody>
+                </table>
+            </form>
+    </div>
+    </main>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+</html>

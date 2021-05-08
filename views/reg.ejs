@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/registration/regw3.css">
+</head>
+<body>
+  <h2>Register As Customer</h2>
+  <div class="outer">
+    <form id="form" method="POST" action="/register/customer">
+      <div class="container">
+        <input type="email" name="email" placeholder="E-mail" required />
+        <input type="password" id="password" name="password" placeholder="Password"  required />
+        <input type="password" id="password2" name="password2" placeholder="Retype password" required  />
+        <input class="text" type="text" name="name" placeholder="Name" required>
+        <input class="text" type="text" name="address" placeholder="address" required>
+        <input type="tel" id="phone" name="phone" placeholder="Phone" pattern="[0-9]{10}" required>
+        <h3>select City</h3>
+        <select name="dist"  required>
+          <% for(i=0; i < dist.length; i++ ) { %>
+            <option class="dist" value="<%=dist[i].district%>" >
+              <%= dist[i].district %>
+            </option>
+            <% }%>
+        </select>
+        <div id ="otp" style="display: none;">
+            <label for="">Enter otp</label>
+            <input name="otp" type="number" >
+          </div>
+      <button  id ="submit"type="submit">SEND OTP</button>
+    </form>
+  </div>
+</body>
+<script>
+
+    $(document).ready(function () {
+      var submit_blocked = false
+      $("#password, #password2").bind("change blur", function(e){
+
+        if($("#password").val() !== $("#password2").val()){
+          submit_blocked = true
+          $("#submit").attr({"disabled":"disabled"})
+        } else{
+          submit_blocked = false
+          $("#submit").removeAttr("disabled")  
+        }
+        console.log(submit_blocked)
+
+      })
+
+      $("#form").submit(function (event) {
+        if(submit_blocked)
+        {
+          console.log("Can't submit")
+          event.preventDefault()
+        }
+        
+        if(!$("#otp").is(":visible")){
+          var fd = $(this);
+          event.preventDefault()
+          
+          $.ajax({
+            url: "/login/auth",
+            data: fd.serialize(),
+            type: 'POST',
+            success: function (dataofconfirm) {
+                $("#otp").show()
+                $("#submit").html('Validate');
+            }
+          });
+        }
+      });
+    });
+  </script>
+</html>

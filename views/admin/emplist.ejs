@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="/admin/admin.css">
+    <style>
+        .row-false{
+            background-color: rgb(185, 180, 44);
+
+        }
+        .row-true{
+            background-color: rgb(0, 77, 5);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h2>Employe</h2>
+        <br>
+        <br>
+        <ul>
+            <li><a  href="/admin">Home</a></li>
+            <li><a  href="/admin/sp" name="service">Service Provider</a></li>
+            <li><a class="active" href="/admin/emp" name="employee">Employee</a></li>
+            <li><a href="/admin/customer" name="cutomer">Customers</a></li>
+        </ul>
+        <h3>Add</h3>
+        <ul>
+            <li><a href="/admin/dist">City</a></li>
+            <li><a href="/admin/category">Category</a></li>
+        </ul>
+        <h3>Logout</h3>
+        <ul>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        </div> 
+    </div>
+    <div style="margin-left:15%;padding:1px 16px;height:1000px;">
+        <main id="site-main">
+            <!-- form handling -->
+            <form>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>phone</th>
+                            <th>Category</th>
+                            <th>Address</th>
+                            <th>place</th>
+                            <th>Approve/Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     
+                            <% for(var i=0; i < emp.length; i++) { %>
+                                <tr class="row-<%= emp[i].approved%>">
+                                    <td>
+                                        <%= i + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= emp[i].name %>
+                                    </td>
+                                    <td>
+                                        <%= emp[i].email %>
+                                    </td>
+                                    <td>
+                                        <%= emp[i].phone %>
+                                    </td>
+                                    <td>
+                                        <%= emp[i].category %>
+                                    </td>
+                                    <td>
+                                        <%= emp[i].address %>
+                                    </td>
+                                    <td>
+                                        <%= emp[i].dist %>
+                                    </td>
+                                    <td>
+                                        <a href="/approve/emp?id=<%= emp[i]._id%>" class="btn border-shadow update">
+                                            <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                        </a>
+                                        <a  href ="/approve/delete/emp?id=<%= emp[i]._id%>"class="btn border-shadow delete">
+                                            <!-- check assets/index.js -->
+                                            <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                    </tbody>
+                </table>
+            </form>
+    </div>
+    </main>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+
+
+</html>

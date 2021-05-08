@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/registration/regw3.css">
+</head>
+<body>
+  <h2>Register As Service Provider</h2>
+  <div class="outer">
+    <form action="/register/sp" method="POST">
+      <div class="container">
+        <input type="email" name="email" placeholder="E-mail" required/>
+        <input type="password" id="password" name="password" placeholder="Password"  required/>
+        <input type="password" id="password2" name="password2" placeholder="Retype password"  required/>
+        <input class="text" type="text" name="name" placeholder="Name" required>
+        <input class="text" type="text" name="address" placeholder="address" required>
+        <input type="tel" id="phone" name="phone" placeholder="Phone" pattern="[0-9]{10}" required>
+         <h3>select category</h3>
+         <select name="category"  required>
+          <% for(i=0; i < category.length; i++ ) { %>
+            <option class="category" value="<%=category[i].category%>">
+              <%= category[i].category %>
+            </option>
+            <% }%>
+        </select>
+          <h3>select City</h3>
+          <select name="dist"  required>
+            <% for(i=0; i < dist.length; i++ ) { %>
+              <option class="dist" value="<%=dist[i].district%>">
+                <%= dist[i].district %>
+              </option>
+              <% }%>
+          </select>
+      <button id = "submit" type="submit">Register</button>
+    </form>
+  </div>
+</body>
+<script>
+  $(document).ready(function () {
+       var submit_blocked = false
+       $("#password, #password2").bind("change blur", function(e){
+ 
+         if($("#password").val() !== $("#password2").val()){
+           submit_blocked = true
+           $("#submit").attr({"disabled":"disabled"})
+         } else{
+           submit_blocked = false
+           $("#submit").removeAttr("disabled")  
+         }
+         console.log(submit_blocked)
+       })});
+ 
+ 
+ </script>
+</html>

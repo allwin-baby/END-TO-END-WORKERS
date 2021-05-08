@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Provider</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="/sp/sp_home.css">
+</head>
+
+<body>
+    <div class="nav">
+        <h3>Service provider Home</h3>
+        <ul>
+            <li><a class="active" href="">Home</a></li>
+            <li><a href="/sp/emp" name="employee">Employee</a></li>
+            <li><a href="/sp/booking" name="employee">Bookings</a></li>
+            <li><a  href="/sp/edit" name="employee">EDIT PROFILE</a></li>
+        </ul>
+        <h3>Logout</h3>
+        <ul>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+<!-- <script src="/js/index.js"></script> -->
+<!-- <script>
+    $('ul li a').click(function (e) {
+        e.preventDefault();
+        if ($('ul li a').hasClass("active")) {
+            $('ul li a').removeClass("active");
+        }
+        $(this).addClass("active");
+    });
+
+    $("document").ready(function (e) {
+        $("ul li a").click(function (e) {
+            if ($(this).attr("name") == "service") {
+                e.preventDefault();
+                console.log("get fun")
+                $.ajax({
+                    url: "/admin/sp",
+                    type: "GET",
+                    success: function (data) {
+                        //$("#form_output").html(data);
+                        sp = data
+                        console.log(html(data))
+                    },
+                    error: function (jXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        }); // Click effect     
+    }); 
+</script> -->
+
+</html>

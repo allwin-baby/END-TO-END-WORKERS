@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/registration/regw3.css">
+</head>
+<body>
+  <h2>Register As Customer</h2>
+  <div class="outer">
+    <form action="/register/customer" method="POST">
+      <div class="container">
+        <input type="text" name="email" placeholder="E-mail" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="password" name="password2" placeholder="Retype password" />
+        <input class="text" type="text" name="name" placeholder="Name" required="">
+        <input class="text" type="text" name="address" placeholder="address" required="">
+        <input type="text" id="phone" name="phone" placeholder="Phone">
+        <h3>select City</h3>
+        <select name="dist"  required>
+          <% for(i=0; i < dist.length; i++ ) { %>
+            <option class="dist" value="<%=dist[i].district%>">
+              <%= dist[i].district %>
+            </option>
+            <% }%>
+        </select>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</body>
+
+</html>

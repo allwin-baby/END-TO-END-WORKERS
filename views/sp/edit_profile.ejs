@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/registration/regw3.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <div class="nav">
+    <h3>Edit Profile</h3>
+    <ul>
+        <li><a  href="/sp/">Home</a></li>
+        <li><a  href="/sp/emp" name="employee">Employee</a></li>
+        <li><a href="/sp/booking" name="employee">Bookings</a></li>      
+        <li><a class="active" href="/sp/edit" name="employee">EDIT PROFILE</a></li>  </ul>
+        <ul>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+<div style="margin-left:15%;padding:1px 16px;height:1000px;">
+  <h2>Update</h2>
+  <div class="outer">
+    <form method="POST" id="update_sp" action="/sp/update">
+      <div class="container">
+        <Label>Name</Label>
+        <input class="text" type="text" name="name"  value="<%= sp.name %>" placeholder="<%= sp.name %>"required="" >
+        <Label>Address</Label>
+        <input class="text" type="text" name="address" value="<%= sp.address %>" placeholder="<%= sp.address %>" required="">
+        <Label>Phone</Label>
+        <input type="tel" id="phone" name="phone" value="<%= sp.phone %>" placeholder="<%= sp.phone %>" pattern="[0-9]{10}" required>
+        <Label><%= sp.category %></Label>
+       <!--  <Label><%= sp.dist %></Label> -->
+     <!--  </select> -->
+<!--       <h3>select City</h3>
+      <select name="dist" required>
+        <% for(i=0; i < dist.length; i++ ) { %>
+          <option class="dist" value="<%=dist[i].district%>">
+            <%= dist[i].district %>
+          </option>
+          <% }%>
+      </select> -->
+    </div>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>
+</body>
+
+</html>

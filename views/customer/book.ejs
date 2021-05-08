@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/customer/regw3.css">
+  <link rel="stylesheet" href="/emp/emp.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <div class="nav">
+    <h3>Customers</h3>
+    <ul>
+      <li><a href="/customer/">Home</a></li>
+      <li><a class="active" href="/customer/booking" name="customer">Booking</a></li>
+      <li><a href="/customer/orders" name="customer">Orders</a></li>
+      <li><a href="/customer/edit">Edit Profile</a></li>
+    </ul>
+    <h3>Logout</h3>
+    <ul>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+
+  </div>
+  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+    <h2>Book As Service</h2>
+    <div class="outer">
+      <form action="/customer/booking" method="POST" id="form">
+        <div class="container">
+          <input class="text" type="text" name="name" placeholder="Name" required="">
+          <input class="text" type="text" name="address" placeholder="address" required="">
+          <input type="tel" id="phone" name="phone" placeholder="Phone" pattern="[0-9]{10}" required>
+          <h3>select category</h3>
+          <select name="category" required>
+            <% for(i=0; i < category.length; i++ ) { %>
+              <option class="category" value="<%=category[i].category%>">
+                <%= category[i].category %>
+              </option>
+              <% }%>
+          </select>
+          <h3>select district</h3>
+          <select name="dist" required>
+            <% for(i=0; i < dist.length; i++ ) { %>
+              <option class="dist" value="<%=dist[i].district%>">
+                <%= dist[i].district %>
+              </option>
+              <% }%>
+          </select>
+        </div>
+        <select name="days" id="days" required>
+          <option class="days" value="1">1</option>
+          <option class="days" value="2">2</option>
+          <option class="days" value="3">3</option>
+        </select>
+        <div id="date">
+        </div>
+        <textarea name=description placeholder="requirement specify"></textarea>
+        <button type="submit" id="submit_btn">Book</button>
+      </form>
+    </div>
+</body>
+<script>
+  $('#days').on('change', function () {
+    $(".book_days").remove();
+    for (let i = 0; i < this.value; i++) {
+      $("#date").append('<input type="date" class="book_days" name="book_days" required>');
+    }
+
+  });
+  $("#days").change()
+  $(document).ready(function () {
+    var stripe = Stripe("pk_test_51IUrDnLiquPRio9QToKdxf8vCXEhZSc1Z0RXXvue7TpPEzvpSc5xnE1bE1T8XnXoQ2XyWHPXaQ1PXB0Zfj5taSNk00SusaRRjQ");
+    $("#form").submit(function (event) {
+      event.preventDefault()
+      if(!checkDate()){
+        alert("Invaild date")
+      } 
+     
+      var fd = $(this);
+      $.ajax({
+        url: "/customer/booking",
+        data: fd.serialize(),
+        type: 'POST',
+        success: function (response) {
+          return stripe.redirectToCheckout({ sessionId: response.id });
+        },
+        error: function (jq, status, err) {
+          console.log(err)
+        }
+      });
+    });
+  });
+
+  function checkDate() {
+    var date_elements = document.querySelectorAll("#date input");
+    console.log(date_elements)
+    for(i = 0; i < date_elements.length; i++){
+      console.log(date_elements[i].value)
+      if(new Date(date_elements[i].value) < new Date()){
+        return false;
+      }
+    }
+    return true;
+  }
+</script>
+
+</html>

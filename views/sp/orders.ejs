@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/admin/admin.css">
+    <style>
+        .row-pending {
+            background-color: rgb(185, 180, 44);
+
+        }
+
+        .row-confirmed {
+            background-color: rgb(0, 77, 5);
+        }
+
+        .row-sprejected {
+            background-color: rgb(178, 34, 34);
+        }
+
+        .row-assigned {
+            background-color: rgb(43, 248, 77);
+        }
+
+        .row-empreject {
+            background-color: rgb(201, 235, 14);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h3>Bookings</h3>
+        <ul>
+            <li><a href="/sp/">Home</a></li>
+            <li><a href="/sp/emp" name="employee">Employee</a></li>
+            <li><a class="active" href="/sp/booking" name="employee">Bookings</a></li>
+            <li><a  href="/sp/edit" name="employee">EDIT PROFILE</a></li>
+            <h3>Logout</h3>
+        </ul>
+            <ul>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+
+    </div>
+    <div style="margin-left:15%;padding:1px 16px;height:1000px;">
+        <main id="site-main">
+            <!-- form handling -->
+            <form>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>name</th>
+                            <th>dist</th>
+                            <th>mobile</th>
+                            <th>adress</th>
+                            <th>category</th>
+                            <th>Assign/Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i < order.length; i++) { %>
+                            <tr class="row-<%= order[i].status%>">
+                                <td>
+                                    <%= order[i].name %>
+                                </td>
+                                <td>
+                                    <%= order[i].dist %>
+                                </td>
+                                <td>
+                                    <%= order[i].phone %>
+                                </td>
+                                <td>
+                                    <%= order[i].address %>
+                                </td>
+                                <td>
+                                    <%= order[i].category %>
+                                </td>
+                                <td>
+                                    <a href="/sp/assign?id=<%= order[i]._id%>" class="btn border-shadow update">
+                                        <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                    </a>
+                                    <a href="/sp/reject?id=<%= order[i]._id%>" class="btn border-shadow delete">
+                                        <!-- check assets/index.js -->
+                                        <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </form>
+    </div>
+</body>
+
+</html>

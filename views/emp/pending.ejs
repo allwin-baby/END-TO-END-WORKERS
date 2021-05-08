@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/admin/admin.css">
+<link rel="stylesheet" href="/admin/admin.css">
+<style>
+  #row-confirmed{
+      background-color: rgb(185, 180, 44);
+
+  }
+  #row-empreject{
+      background-color: rgb(0, 77, 5);
+  }
+
+</style>
+<body>
+  <div class="nav">
+    <h2>Pending Works</h2>
+    <br>
+    <ul>
+        <li><a  href="/emp">Home</a></li>
+        <li><a  class="active"href="/emp/works">Pending Works</a></li>
+        <li><a  href="/emp/edit">Edit Profile</a></li>
+    </ul>
+    <h3>Logout</h3>
+    <ul>
+        <li><a href="/logout">Logout</a></li>
+    </ul>   
+</div>
+<div style="margin-left:15%;padding:1px 16px;height:1000px;">
+<div class="w3-container">
+  <% for(var i=0; i < work.length; i++) { %>
+  <h2><%= work[i].selected_date %></h2>
+
+  <div class="w3-panel w3-card"  id="row-<%= work[i].status%>">
+    <p>
+      <%= work[i].name %>
+    </p> 
+    <p>
+      <%= work[i].phone %>
+    </p> 
+    <p>
+      <%= work[i].dist %>
+    </p> 
+      <p>
+        <%= work[i].address %>
+      </p>  
+
+      <p>
+        <%= work[i].status %>
+      </p>
+      <p>
+        <%= work[i].selected_date %>
+      </p>
+      <div class="w3-section">
+        <button class="w3-button w3-green"><a href="/emp/confirm?id=<%= work[i]._id%>" >Accept</a></button>
+        <button class="w3-button w3-red"><a href="/emp/reject?id=<%= work[i]._id%>" >Decline</a></button>
+      </div>
+    </div>
+    <% } %>
+</div>
+
+</body>
+</html>

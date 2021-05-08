@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h2>Login</h2>
+<div class="outer">
+    <form action="/login" method="post">
+        <div class="container">
+          <label for="username"><b>Email</b></label>
+          <input type="text" name="email" placeholder="E-mail" />
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" required>
+          <div>
+            <h3>Login As </h3>
+            <label>
+              <input type="checkbox" class="radio" value="1" name="roleid" />Admin</label>
+            <label>
+              <input type="checkbox" class="radio" value="3" name="roleid" />Employee</label>
+            <label>
+              <input type="checkbox" class="radio" value="4" name="roleid" />Customer</label>
+              <label>
+                <input type="checkbox" class="radio" value="2" name="roleid" />Service Provider</label>
+          </div>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">
+          <span class="psw">Dont have <a href="/">an account?</a></span></button>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+</div>
+<script>
+    // the selector will match all input controls of type :checkbox
+// and attach a click event handler 
+$("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+</script>
+</body>
+</html>
