@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51IUrDnLiquPRio9QmRVACCjxT5oeEUTMo1twQd6KNVI71IOLHpirU8NTgr5rdGFyLNZPlNmkJuiVC3i4QGzcvXt800nf9sKFCF');
+const stripe = require('stripe')('');
 const router = require('express').Router();
 
 const YOUR_DOMAIN = 'http://localhost:4242';
