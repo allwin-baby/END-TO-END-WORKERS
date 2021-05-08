@@ -1,4 +1,5 @@
-const stripe = require('stripe')('');
+const stripe = require('stripe')(''); #put sectet key here
+console.log("#put sectet key here")
 const router = require('express').Router();
 
 const YOUR_DOMAIN = 'http://localhost:4242';
